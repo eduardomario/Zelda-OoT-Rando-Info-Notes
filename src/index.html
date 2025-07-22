@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="index.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Zelda OoT Info Notes</title>
+  </head>
+  <body>
+    <button id="reset-file" class="reset-file">Reset File</button>
+    <div class="title-btn">
+      <h1>Stones/Medallions</h1>
+      <button id="save-sm">Save Stone/Medallion</button>
+    </div>
+    <div id="sm-info" class="sm-info"></div>
+    <br>
+    <div class="title-btn">
+      <h1>Dungeons</h1>
+      <button id="save-dungeon">Save Dungeon</button>
+    </div>
+    <div id="dungeons-info" class="dungeons-info"></div>
+    <br>
+    <h1>Shops</h1>
+    <select name="shop-location" id="shop-location">
+      <option value="empty">Select shop location</option>
+      <option value="skokiri">Kokiri Shop</option>
+      <option value="sbazaar">Market Bazaar</option>
+      <option value="spotion">Market Potion Shop</option>
+      <option value="sbombchu">Bombchu Shop</option>
+      <option value="sgoron">Goron Shop</option>
+      <option value="szora">Zora Shop</option>
+      <option value="skbazaar">Kakariko Bazaar</option>
+      <option value="skpotion">Kakariko Potion Shop</option>
+    </select>
+    <input placeholder="Item" type="text" id="shop-item">
+    <input placeholder="Price" type="number" id="shop-price" max="999">
+    <button id="save-shop">Save Shop Hint</button>
+    <br>
+    <div id="shops-info" class="shops-info"></div>
+    <br>
+    <h1>Hints</h1>
+    <input placeholder="Hint 1" type="text" id="hint-1">
+    <input placeholder="Hint 2" type="text" id="hint-2">
+    <input placeholder="Hint 3" type="text" id="hint-3">
+    <button id="save-hint">Save Hint</button>
+    <br>
+    <div id="hints-info" class="hints-info"></div>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

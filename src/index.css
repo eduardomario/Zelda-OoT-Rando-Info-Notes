@@ -1,0 +1,153 @@
+body {
+    margin-bottom: 20px;
+    background: #252525;
+    color: #ffffff;
+}
+
+button {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 10px 5px 0;
+    padding: 0.2rem 0.6rem;
+    color: white;
+    background: transparent;
+    box-shadow: 3px 3px 3px 0px black;
+    border: outset 2px black;
+}
+
+button:hover {
+    background: #494949;
+    cursor: pointer;
+}
+
+button:focus {
+    background: #383838;
+    box-shadow: 3px 3px 0px 0px black;
+}
+
+button:active {
+    background: #010101;
+    box-shadow: 1px 1px 3px 0px black;
+}
+
+select {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 10px 5px 0;
+    padding: 0.2rem 1.2rem 0.2rem 0;
+    color: white;
+    background: transparent;
+    box-shadow: 3px 3px 3px 0px black;
+    border: outset 2px black;
+}
+
+select:hover {
+    background: #494949;
+    cursor: pointer;
+}
+
+select:focus {
+    background: #191919;
+    box-shadow: 3px 3px 0px 0px black;
+}
+
+select:active {
+    background: #010101;
+    box-shadow: 1px 1px 3px 0px black;
+}
+
+input {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 10px 5px 0;
+    padding: 0.2rem 0 0.2rem 0.6rem;
+    color: white;
+    background: transparent;
+    border: solid 1px white;
+    border-radius: 0.5rem;
+}
+
+input::placeholder {
+    opacity: 0.8;
+    color: white;
+}
+
+input:focus-visible {
+    outline: solid 1px #f0f0f0;
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+}
+
+.reset-file {
+    position: fixed;
+    right: 10px;
+}
+
+h1 {
+    margin-right: 10px;
+}
+
+.title-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sm-info {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 0;
+
+    > input {
+        margin: 0;
+        border: solid 1px #444444;
+    }
+
+    > img {
+        width: 2rem;
+        height: auto;
+        margin: 0 10px;
+    }
+
+    > img.close {
+        width: 1.2rem;
+    }
+
+    > select {
+        margin: 0;
+    }
+}
+
+.dungeons-info {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+.shops-info {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+.hints-info {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
