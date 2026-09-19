@@ -60,22 +60,12 @@ class MainScreen {
       const store = new Storage('data/notes.json')
       store.set('smInfo', data)
       this.refreshPage()
-      dialog.showMessageBox({
-        title: 'Save Stone/Medallion',
-        message: 'Cambios guardados con éxito',
-        type: 'info'
-      })
     })
 
     ipcMain.on('saveDungeon', (event, data) => {
       const store = new Storage('data/notes.json')
       store.set('dungeons', data)
       this.refreshPage()
-      dialog.showMessageBox({
-        title: 'Save Dungeon',
-        message: 'Cambios guardados con éxito',
-        type: 'info'
-      })
     })
 
     ipcMain.on('saveShop', (event, data) => {
@@ -91,21 +81,11 @@ class MainScreen {
     })
 
     ipcMain.on('deleteShopHint', (event, index) => {
-      dialog.showMessageBox({
-        title: 'Delete Shop Hint',
-        message: '¿Estas seguro de borrar esta pista?',
-        type: 'info',
-        buttons: ['Yes', 'No']
-      })
-      .then((result) => {
-        if (result.response == 0) {
-          const store = new Storage('data/notes.json')
-          let shops = store.get('shops')
-          const newShops = shops.filter((shop, id) => id != index)
-          store.set('shops', newShops)
-          this.refreshPage()
-        }
-      })
+      const store = new Storage('data/notes.json')
+      let shops = store.get('shops')
+      const newShops = shops.filter((shop, id) => id != index)
+      store.set('shops', newShops)
+      this.refreshPage()
     })
 
     ipcMain.on('saveHint', (event, data) => {
@@ -120,21 +100,11 @@ class MainScreen {
     })
 
     ipcMain.on('deleteHint', (event, index) => {
-      dialog.showMessageBox({
-        title: 'Delete Hint',
-        message: '¿Estas seguro de borrar esta pista?',
-        type: 'info',
-        buttons: ['Yes', 'No']
-      })
-      .then((result) => {
-        if (result.response == 0) {
-          const store = new Storage('data/notes.json')
-          let hints = store.get('hints')
-          const newHints = hints.filter((hint, id) => id != index)
-          store.set('hints', newHints)
-          this.refreshPage()
-        }
-      })
+      const store = new Storage('data/notes.json')
+      let hints = store.get('hints')
+      const newHints = hints.filter((hint, id) => id != index)
+      store.set('hints', newHints)
+      this.refreshPage()
     })
 
     ipcMain.on('resetFile', (event, data) => {

@@ -51,7 +51,7 @@ const locations = [
     },
     {
         group: 'Temples',
-        options: ['forest', 'fire', 'water', 'shadow', 'spirit']
+        options: ['forest', 'fire', 'water', 'spirit', 'shadow']
     },
     {
         group: 'Extras',
@@ -66,7 +66,7 @@ const bosses = [
     },
     {
         group: 'Adult',
-        options: ['bphantom', 'bvolvagia', 'bmorpha', 'bbongo', 'btwin', 'bganon']
+        options: ['bphantom', 'bvolvagia', 'bmorpha', 'btwin', 'bbongo', 'bganon']
     }
 ]
 
@@ -151,6 +151,14 @@ const createSelectLocation = (key, value, section) => {
         }
     })
     select.value = value
+    select.addEventListener('change', (event) => {
+        if (section == 'sm') {
+            window.indexAPI.saveSM();
+        }
+        if (section == 'dungeon') {
+            window.indexAPI.saveDungeon();
+        }
+    });
     return select
 }
 

@@ -3,23 +3,33 @@ const { ipcRenderer, contextBridge } = require('electron')
 contextBridge.exposeInMainWorld('indexAPI', {
   reload: (callback) => ipcRenderer.on('reload', (_event, value) => callback(value)),
   deleteShopHint: (index) => ipcRenderer.send('deleteShopHint', index),
-  deleteHint: (index) => ipcRenderer.send('deleteHint', index)
+  deleteHint: (index) => ipcRenderer.send('deleteHint', index),
+  saveSM: () => saveStoneMedallion(),
+  saveDungeon: () => saveDungeons()
 })
 
 const smList = [
-  'mlight', 'mforest', 'mfire', 'mwater', 'mshadow', 'mspirit', 'emerald', 'ruby', 'sapphire'
+  'emerald', 'ruby', 'sapphire', 'mlight', 'mforest', 'mfire', 'mwater', 'mspirit', 'mshadow'
+]
+
+const defaultSMList = [
+  'deku', 'dodongo', 'jabu', 'link', 'forest', 'fire', 'water', 'spirit', 'shadow'
 ]
 
 const dungeonList = [
-  'deku', 'dodongo', 'jabu', 'forest', 'fire', 'water', 'shadow', 'spirit', 'ganon', 'well', 'ice', 'gtg'
+  'deku', 'dodongo', 'jabu', 'forest', 'fire', 'water', 'spirit', 'shadow', 'ganon', 'well', 'ice', 'gtg'
 ]
 
-const saveStoneMedallionListener = () => {
-  let smBtn = document.getElementById('save-sm')
+const defaultBossesList = [
+  'bgohma', 'bdodongo', 'bbarinade', 'bphantom', 'bvolvagia', 'bmorpha', 'btwin', 'bbongo', 'bganon'
+]
+
+const setDefaultStoneMedallionListener = () => {
+  let smBtn = document.getElementById('default-sm')
   smBtn.addEventListener('click', () => {
     const list = []
-    smList.forEach(smKey => {
-      const smValue = document.getElementById('sm-location-' + smKey).value
+    smList.forEach((smKey, index) => {
+      const smValue = defaultSMList[index]
       const data = { 'smKey': smKey, 'smValue': smValue }
       list.push(data)
     })
@@ -27,18 +37,39 @@ const saveStoneMedallionListener = () => {
   })
 }
 
-const saveDungeonsListener = () => {
-  let dBtn = document.getElementById('save-dungeon')
+const saveStoneMedallion = () => {
+  const list = []
+  smList.forEach(smKey => {
+    const smValue = document.getElementById('sm-location-' + smKey).value
+    const data = { 'smKey': smKey, 'smValue': smValue }
+    list.push(data)
+  })
+  ipcRenderer.send('saveSM', list)
+}
+
+const setDefaultDungeonsListener = () => {
+  let dBtn = document.getElementById('default-dungeon')
   dBtn.addEventListener('click', () => {
     const list = []
-    dungeonList.forEach(entrance => {
-      let dungeon = document.getElementById('d-location-' + entrance).value
-      let boss = document.getElementById('d-boss-' + entrance).value
+    dungeonList.forEach((entrance, index) => {
+      let dungeon = entrance
+      let boss = defaultBossesList[index] ?? ""
       const data = { 'entrance': entrance, 'dungeon': dungeon, 'boss': boss }
       list.push(data)
     })
     ipcRenderer.send('saveDungeon', list)
   })
+}
+
+const saveDungeons = () => {
+  const list = []
+  dungeonList.forEach(entrance => {
+    let dungeon = document.getElementById('d-location-' + entrance).value
+    let boss = document.getElementById('d-boss-' + entrance).value
+    const data = { 'entrance': entrance, 'dungeon': dungeon, 'boss': boss }
+    list.push(data)
+  })
+  ipcRenderer.send('saveDungeon', list)
 }
 
 const saveShopHintsListener = () => {
@@ -81,8 +112,8 @@ const resetFileListener = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  saveStoneMedallionListener()
-  saveDungeonsListener()
+  setDefaultStoneMedallionListener()
+  setDefaultDungeonsListener()
   saveShopHintsListener()
   saveHintsListener()
   resetFileListener()
