@@ -43,16 +43,16 @@ class Storage {
     let smInfo = this.get('smInfo')
 
     if (!smInfo || smInfo.length < 9) {
-      smInfo  = [
+      smInfo = [
+        { smKey: 'emerald', smValue: ''},
+        { smKey: 'ruby', smValue: ''},
+        { smKey: 'sapphire', smValue: ''},
         { smKey: 'mlight', smValue: ''},
         { smKey: 'mforest', smValue: ''},
         { smKey: 'mfire', smValue: ''},
         { smKey: 'mwater', smValue: ''},
-        { smKey: 'mshadow', smValue: ''},
         { smKey: 'mspirit', smValue: ''},
-        { smKey: 'emerald', smValue: ''},
-        { smKey: 'ruby', smValue: ''},
-        { smKey: 'sapphire', smValue: ''}
+        { smKey: 'mshadow', smValue: ''}
       ]
     }
     return smInfo
@@ -68,8 +68,8 @@ class Storage {
         { entrance: 'forest', dungeon: '', boss: ''},
         { entrance: 'fire', dungeon: '', boss: ''},
         { entrance: 'water', dungeon: '', boss: ''},
-        { entrance: 'shadow', dungeon: '', boss: ''},
         { entrance: 'spirit', dungeon: '', boss: ''},
+        { entrance: 'shadow', dungeon: '', boss: ''},
         { entrance: 'ganon', dungeon: '', boss: ''},
         { entrance: 'well', dungeon: '', boss: ''},
         { entrance: 'ice', dungeon: '', boss: ''},
@@ -125,11 +125,6 @@ class Storage {
               })
               reject()
             } else {
-              dialog.showMessageBox({
-                title: 'Info',
-                message: 'Archivo reiniciado con exito',
-                type: 'info'
-              })
               this.validateJson()
               resolve()
             }

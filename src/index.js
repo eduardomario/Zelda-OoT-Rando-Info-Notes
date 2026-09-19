@@ -120,12 +120,6 @@ class MainScreen {
           store.deleteFile().then(() => {
             this.refreshPage()
           })
-        } else {
-          dialog.showMessageBox({
-            title: 'Reset File',
-            message: 'Reinicio de las notas cancelado',
-            type: 'info'
-          })
         }
       })
     })
