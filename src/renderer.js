@@ -181,6 +181,9 @@ const createSelectBoss = (key, value) => {
         select.appendChild(optgroup)
     })
     select.value = value
+    select.addEventListener('change', (event) => {
+        window.indexAPI.saveDungeon();
+    });
     return select
 }
 
